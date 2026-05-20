@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
       tr.innerHTML = `
         <td>
           <div style="font-weight: 700; color: var(--text);">${dev.name}</div>
-          <div style="font-size: 11px; color: var(--muted);">${dev.type}</div>
+          <div style="font-size: 11px; color: var(--muted);">${dev.type} &bull; <span style="color: var(--cyan); font-weight: 600;">${dev.location}</span></div>
         </td>
         <td><code style="font-size: 13px;">${dev.ip}</code></td>
         <td><span class="status-pill ${dev.status.toLowerCase()}">${dev.status}</span></td>
@@ -451,6 +451,7 @@ document.addEventListener("DOMContentLoaded", () => {
     drawerDeviceIP.textContent = dev.ip;
     drawerDeviceStatus.className = `status-pill ${dev.status.toLowerCase()}`;
     drawerDeviceStatus.textContent = dev.status;
+    document.querySelector("#drawerDeviceLocation span").textContent = dev.location;
 
     updateDrawerLiveMetrics(dev);
 
@@ -505,7 +506,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.querySelector("#newDeviceName").value.trim();
     const ip = document.querySelector("#newDeviceIP").value.trim();
     const type = document.querySelector("#newDeviceType").value;
-    const location = "NOC Room";
+    const location = document.querySelector("#newDeviceLocation").value.trim() || "Default Rack";
 
     try {
       const response = await fetch("/api/devices", {
