@@ -1,0 +1,19 @@
+{
+  "name": "nmlalert-system",
+  "version": "1.0.0",
+  "description": "Premium NMLAlert Network Monitoring and LINE Alert System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7",
+    "node-fetch": "^3.3.2",
+    "ping": "^0.4.4"
+  },
+  "type": "commonjs"
+}

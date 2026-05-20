@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NMLAlert System - Dashboard</title>
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-space">
+  <div class="app-shell">
+    
+    <!-- BRAND NEW HIGH-FIDELITY SIDEBAR WITH CUSTOM SVGS -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span>
+          <strong>NMLAlert</strong>
+          <small>System Operations</small>
+        </span>
+      </div>
+
+      <nav class="nav-list">
+        <a class="nav-item active" href="#" aria-current="page" id="nav-dashboard">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="9" />
+              <rect x="14" y="3" width="7" height="5" />
+              <rect x="14" y="12" width="7" height="9" />
+              <rect x="3" y="16" width="7" height="5" />
+            </svg>
+          </span>
+          Dashboard
+        </a>
+        <a class="nav-item" href="#" id="nav-devices">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+              <line x1="6" y1="6" x2="6.01" y2="6" />
+              <line x1="6" y1="18" x2="6.01" y2="18" />
+              <line x1="10" y1="6" x2="10.01" y2="6" />
+              <line x1="10" y1="18" x2="10.01" y2="18" />
+            </svg>
+          </span>
+          Devices
+        </a>
+        <a class="nav-item" href="#" id="nav-alerts">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+          </span>
+          Alerts
+          <span class="nav-badge" id="navAlertBadge">3</span>
+        </a>
+        <a class="nav-item" href="#" id="nav-logs">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="9" x2="20" y2="9" />
+              <line x1="4" y1="15" x2="20" y2="15" />
+              <line x1="10" y1="3" x2="8" y2="21" />
+              <line x1="16" y1="3" x2="14" y2="21" />
+            </svg>
+          </span>
+          SysLogs
+        </a>
+        <a class="nav-item" href="#" id="nav-stats">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20V10M18 20V4M6 20v-4" />
+            </svg>
+          </span>
+          Statistics
+        </a>
+        <a class="nav-item" href="#" id="nav-settings">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+          </span>
+          Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-status">
+        <span class="pulse-dot"></span>
+        <div>
+          <strong>Live Polling Engine</strong>
+          <small>Refreshes every 5s</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD SHELL -->
+    <main class="dashboard">
+      
+      <!-- TOP BAR WITH SEARCH, INTERACTIVE CONTROLS -->
+      <header class="topbar">
+        <div class="search-wrap">
+          <label class="search-box">
+            <span class="search-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </span>
+            <input type="search" id="deviceSearch" placeholder="Search devices by name, IP or status..." />
+          </label>
+        </div>
+
+        <div class="topbar-actions">
+          <!-- QUICK THEME SWITCHER -->
+          <div class="theme-selector-wrap">
+            <button class="topbar-btn" id="themeBtn" aria-haspopup="listbox" aria-label="Change Theme">
+              <svg class="icon-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+              <span>Theme</span>
+            </button>
+            <div class="theme-dropdown" id="themeDropdown" role="listbox">
+              <button class="theme-opt active" data-theme="space" role="option">Deep Space</button>
+              <button class="theme-opt" data-theme="cyber" role="option">Cyberpunk Glow</button>
+              <button class="theme-opt" data-theme="matrix" role="option">Forest Matrix</button>
+              <button class="theme-opt" data-theme="aurora" role="option">Light Aurora</button>
+            </div>
+          </div>
+
+          <!-- QUICK ADD DEVICE BUTTON -->
+          <button class="topbar-btn primary-btn" id="openAddDeviceModalBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="16" />
+              <line x1="8" y1="12" x2="16" y2="12" />
+            </svg>
+            <span>Add Device</span>
+          </button>
+
+          <time id="currentTime">--:--:--</time>
+          
+          <!-- PROFILE AVATAR WITH DROPDOWN -->
+          <div class="profile-menu-wrap" id="profileMenuWrap">
+            <button class="profile-button" id="profileBtn" type="button" aria-haspopup="listbox" aria-label="Admin profile">
+              <span class="profile-avatar">AD</span>
+              <span>Admin</span>
+            </button>
+            <div class="profile-dropdown" id="profileDropdown" role="listbox">
+              <button class="profile-opt" id="logoutBtn" role="option">
+                Log Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE HEADING -->
+      <section class="page-heading" aria-labelledby="dashboard-title">
+        <div>
+          <p class="subtitle">Global Network Operations Center</p>
+          <h1 id="dashboard-title">Operations Monitoring</h1>
+        </div>
+        <div class="refresh-meta">
+          <span class="status-pill online">POLLE ENGINE ONLINE</span>
+          <span id="lastUpdate">Last update: now</span>
+        </div>
+      </section>
+
+      <!-- VIEW SECTION 1: DASHBOARD (DEFAULT ACTIVE) -->
+      <div id="view-dashboard" class="view-section">
+        <!-- DYNAMIC METRICS SUMMARY GRID -->
+        <section class="summary-grid" aria-label="Device summary">
+          <article class="metric-card">
+            <div class="metric-header">
+              <span class="metric-label">Total Monitored Nodes</span>
+              <div class="metric-icon blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M4 5h16M4 12h16"/></svg>
+              </div>
+            </div>
+            <strong id="totalDevicesCount">--</strong>
+            <small>Active node groups auto-synced</small>
+          </article>
+          
+          <article class="metric-card">
+            <div class="metric-header">
+              <span class="metric-label">Operational Nodes</span>
+              <div class="metric-icon green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+            </div>
+            <strong class="text-online" id="onlineDevices">--</strong>
+            <small>Responding stable</small>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-header">
+              <span class="metric-label">Critical Outages</span>
+              <div class="metric-icon red animate-flash">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+            </div>
+            <strong class="text-offline" id="offlineDevices">--</strong>
+            <small>Requires immediate actions</small>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-header">
+              <span class="metric-label">Core Latency (Avg)</span>
+              <div class="metric-icon yellow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+            </div>
+            <strong class="text-warning" id="averagePing">--ms</strong>
+            <small>Real-time round-trip metric</small>
+          </article>
+        </section>
+
+        <!-- CONTENT GRID (TABLE & INCIDENTS) -->
+        <section class="content-grid">
+          <!-- HIGH-TECH INTERACTIVE DEVICE TABLE -->
+          <article class="panel table-panel">
+            <div class="panel-header">
+              <div>
+                <p class="panel-tag">Live Topology</p>
+                <h2>Node Inventory & Status</h2>
+              </div>
+              <div class="panel-badge-group">
+                <span class="status-pill warning" id="tableWarningCount">Checking...</span>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table id="deviceTable">
+                <thead>
+                  <tr>
+                    <th class="sortable" data-sort="name">Device <span>⇅</span></th>
+                    <th class="sortable" data-sort="ip">IP Address <span>⇅</span></th>
+                    <th class="sortable" data-sort="status">Status <span>⇅</span></th>
+                    <th class="sortable" data-sort="ping">Ping (RTT) <span>⇅</span></th>
+                  </tr>
+                </thead>
+                <tbody id="deviceTableBody">
+                  <!-- Dynamically populated rows -->
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- INCIDENT ALERT FEED WITH ACTIONS -->
+          <aside class="panel alert-panel" aria-label="Alerts">
+            <div class="panel-header compact">
+              <div>
+                <p class="panel-tag">[INCIDENT FLOW]</p>
+                <h2>Realtime Alarms</h2>
+              </div>
+              <span class="live-blink-badge">LIVE FEED</span>
+            </div>
+
+            <div class="alert-feed-container" id="alertFeed">
+              <!-- Dynamic alerts go here -->
+            </div>
+          </aside>
+        </section>
+
+        <!-- PREMIUM REALTIME CANVAS GRAPH WITH BÉZIER & TOOLTIP -->
+        <section class="panel graph-panel" aria-labelledby="graph-title">
+          <div class="panel-header flex-header">
+            <div>
+              <p class="panel-tag">Time Series Telemetry</p>
+              <h2 id="graph-title">Historical Analytics</h2>
+            </div>
+            <div class="legend" id="chartLegend">
+              <span class="legend-item" data-series="uptime" role="checkbox" aria-checked="true">
+                <i class="line uptime"></i> Uptime Status
+              </span>
+              <span class="legend-item" data-series="ping" role="checkbox" aria-checked="true">
+                <i class="line ping"></i> Average Latency
+              </span>
+              <span class="legend-item" data-series="downtime" role="checkbox" aria-checked="true">
+                <i class="line downtime"></i> Incident Frequency
+              </span>
+            </div>
+          </div>
+
+          <div class="chart-outer">
+            <canvas id="realtimeChart" width="1200" height="320" aria-label="Interactive realtime network graph"></canvas>
+            <div id="chartTooltip" class="chart-tooltip hidden"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- VIEW SECTION 2: DEVICES (FULL LIST & ACTIONS) -->
+      <div id="view-devices" class="view-section hidden">
+        <section class="panel list-panel">
+          <div class="panel-header flex-header">
+            <div>
+              <p class="panel-tag">Manage Inventory</p>
+              <h2>Device Management Node System</h2>
+            </div>
+            <button class="topbar-btn primary-btn" id="subOpenAddDeviceBtn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; margin-right: 6px;">
+                <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="16" /><line x1="8" y1="12" x2="16" y2="12" />
+              </svg>
+              Add New Node
+            </button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Device Name</th>
+                  <th>Device Type</th>
+                  <th>IP Address</th>
+                  <th>Location</th>
+                  <th>Current Status</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="managementTableBody">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- VIEW SECTION 3: ALERTS (HISTORICAL & ACTIVE INCIDENTS) -->
+      <div id="view-alerts" class="view-section hidden">
+        <section class="panel list-panel">
+          <div class="panel-header flex-header">
+            <div>
+              <p class="panel-tag">Alarms feed</p>
+              <h2>Incident Alarm Incident History</h2>
+            </div>
+            <span class="live-blink-badge">LIVE STATUS</span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Device Name</th>
+                  <th>IP Address</th>
+                  <th>Incident Message</th>
+                  <th>Severity Level</th>
+                  <th>Time Logged</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="alertsHistoryTableBody">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- VIEW SECTION 4: SYSLOGS (TELEMETRY LOG HISTORY) -->
+      <div id="view-logs" class="view-section hidden">
+        <section class="panel list-panel">
+          <div class="panel-header flex-header">
+            <div>
+              <p class="panel-tag">System Logs</p>
+              <h2>Telemetry Log History (MySQL monitoring_logs)</h2>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <span class="status-pill online">AUTO REFRESH ACTIVE</span>
+              <a href="/api/logs/export" class="topbar-btn primary-btn" style="text-decoration: none; padding: 8px 16px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                Export CSV Report
+              </a>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Device Name</th>
+                  <th>Device Type</th>
+                  <th>IP Address</th>
+                  <th>Ping (RTT)</th>
+                  <th>Status</th>
+                  <th>Checked At</th>
+                </tr>
+              </thead>
+              <tbody id="syslogsTableBody">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- VIEW SECTION 5: STATISTICS (PERFORMANCE INSIGHTS) -->
+      <div id="view-stats" class="view-section hidden">
+        <section class="summary-grid" style="margin-bottom: 24px;">
+          <article class="metric-card">
+            <div class="metric-header">
+              <span class="metric-label">Uptime Percentage (24h)</span>
+              <div class="metric-icon green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+            </div>
+            <strong id="uptimeStatVal">99.98%</strong>
+            <small>Total network healthy cycles</small>
+          </article>
+          <article class="metric-card">
+            <div class="metric-header">
+              <span class="metric-label">Downtime Incident Rate</span>
+              <div class="metric-icon red">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+              </div>
+            </div>
+            <strong id="downtimeStatVal">0.02%</strong>
+            <small>Active outage log ratio</small>
+          </article>
+          <article class="metric-card">
+            <div class="metric-header">
+              <span class="metric-label">Average LAN Latency</span>
+              <div class="metric-icon yellow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+            </div>
+            <strong id="avgPingStatVal">12ms</strong>
+            <small>Stable ICMP latency average</small>
+          </article>
+        </section>
+
+        <section class="panel list-panel">
+          <div class="panel-header">
+            <div>
+              <p class="panel-tag">Report Metrics</p>
+              <h2>Network Node Analytics</h2>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Device Name</th>
+                  <th>IP Address</th>
+                  <th>Average Ping (24h)</th>
+                  <th>Total Incidents</th>
+                  <th>Operational Status</th>
+                </tr>
+              </thead>
+              <tbody id="statsTableBody">
+                <!-- Computed from logs -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- VIEW SECTION 6: SETTINGS (LINE ALERTS & DEVICE DISCOVERY) -->
+      <div id="view-settings" class="view-section hidden">
+        <div class="content-grid" style="grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+          
+          <!-- LINE Notify Config Glassmorphic Panel -->
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="panel-tag">Integrations</p>
+                <h2>LINE Notify API Alert Config</h2>
+              </div>
+            </div>
+            <form id="lineSettingsForm" style="display: flex; flex-direction: column; gap: 16px; margin-top: 12px;">
+              <div class="form-group">
+                <label for="lineTokenInput">LINE Notify Token</label>
+                <input type="password" id="lineTokenInput" placeholder="กรอก LINE Notify Token ของคุณที่นี่..." style="width: 100%;" />
+                <small style="color: var(--muted); display: block; margin-top: 4px;">รับโทเคนได้ฟรีที่เว็บไซต์ LINE Notify เพื่อรับการแจ้งเตือนทันทีเมื่ออุปกรณ์ Offline / Online</small>
+              </div>
+              <div class="form-actions" style="display: flex; gap: 12px; margin-top: 8px;">
+                <button type="submit" class="form-btn primary" id="saveLineTokenBtn" style="padding: 10px 20px;">Save Token</button>
+                <button type="button" class="form-btn secondary" id="testLineNotifyBtn" style="padding: 10px 20px;">Test Send 🚀</button>
+              </div>
+            </form>
+          </article>
+
+          <!-- System Poll Settings Glassmorphic Panel -->
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="panel-tag">Core Daemon</p>
+                <h2>Monitoring Preferences</h2>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 12px;">
+              <div class="form-group">
+                <label>Background Monitoring Engine</label>
+                <div style="font-size: 15px; color: var(--text); font-weight: 600; margin-top: 6px;">Status: <span class="status-pill online">ONLINE</span></div>
+                <small style="color: var(--muted); display: block; margin-top: 4px;">เซิร์ฟเวอร์หลังบ้านกำลังตรวจสอบและเก็บประจุความเร็ว Ping ทุก ๆ 1 นาที (60 วินาที) ลงใน MySQL อัตโนมัติ</small>
+              </div>
+              <div class="form-group" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px;">
+                <label>Database Connection State</label>
+                <div style="font-size: 15px; color: var(--text); font-weight: 600; margin-top: 6px;">State: <span class="status-pill online" style="background: rgba(16,185,129,0.15); color: #10b981;">Connected (netwatch_noc)</span></div>
+                <small style="color: var(--muted); display: block; margin-top: 4px;">Host: localhost:3306 | Engine: InnoDb | Charset: UTF8MB4</small>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- LINE DISCOVERY SCANNER PANEL -->
+        <section class="panel">
+          <div class="panel-header flex-header">
+            <div>
+              <p class="panel-tag">Device Discovery</p>
+              <h2>Automatic Subnet Scanner (ARP & Concurrent Ping)</h2>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <input type="text" id="discoverySubnetInput" value="192.168.1" placeholder="Subnet (e.g. 192.168.1)" style="padding: 8px 12px; font-size: 13px; border-radius: 6px; width: 150px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff;" />
+              </div>
+              <button class="topbar-btn primary-btn" id="startDiscoveryScanBtn" type="button" style="padding: 8px 16px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; margin-right: 6px;" class="icon-spin">
+                  <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                </svg>
+                Scan Subnet .0/24
+              </button>
+            </div>
+          </div>
+
+          <div style="margin-top: 16px; padding: 24px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px dashed rgba(255,255,255,0.05); text-align: center; color: var(--muted);" id="discoveryScanIntro">
+            กรอกช่วง Subnet (เช่น 192.168.1 สำหรับวง 192.168.1.1 ถึง 254) แล้วกดปุ่ม **Scan Subnet** เพื่อดึงอุปกรณ์ทั้งหมดในเครือข่ายเรียลไทม์
+          </div>
+
+          <div class="table-wrap hidden" id="discoveryResultWrap" style="margin-top: 16px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Detected IP Address</th>
+                  <th>Physical MAC Address</th>
+                  <th>Hostname / DNS Target</th>
+                  <th style="text-align: right;">Operations</th>
+                </tr>
+              </thead>
+              <tbody id="discoveryResultTableBody">
+                <!-- Dynamically populated rows from API -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- SLIDE-OUT DEVICE DETAILS METRICS DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="details-drawer" id="detailsDrawer" aria-label="Device Metrics Detail">
+    <div class="drawer-header">
+      <div>
+        <span class="status-pill online" id="drawerDeviceStatus">Online</span>
+        <h3 id="drawerDeviceName">Device Name</h3>
+        <code id="drawerDeviceIP">192.168.1.1</code>
+      </div>
+      <button class="close-drawer-btn" id="closeDrawerBtn" aria-label="Close drawer">&times;</button>
+    </div>
+    
+    <div class="drawer-body">
+      <div class="drawer-metric-grid">
+        <div class="drawer-card">
+          <span>CPU Utility</span>
+          <strong id="drawerCPUValue">--%</strong>
+          <div class="progress-bar">
+            <div class="progress-fill fill-blue" id="drawerCPUFill" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="drawer-card">
+          <span>Memory Load</span>
+          <strong id="drawerMemValue">--%</strong>
+          <div class="progress-bar">
+            <div class="progress-fill fill-purple" id="drawerMemFill" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-section">
+        <h4>Simulated Realtime Metrics</h4>
+        <div class="sparkline-container">
+          <div class="spark-item">
+            <span>Bandwidth Out (TX)</span>
+            <strong id="drawerBandwidthTX">-- Mbps</strong>
+          </div>
+          <div class="spark-item">
+            <span>Bandwidth In (RX)</span>
+            <strong id="drawerBandwidthRX">-- Mbps</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-section">
+        <h4>Device Incident Log</h4>
+        <ul class="drawer-logs" id="drawerLogsList">
+          <li>No outages detected in last 24hrs</li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- QUICK ADD DEVICE MODAL OVERLAY -->
+  <div class="modal-overlay" id="addDeviceModalOverlay">
+    <dialog class="add-device-modal" id="addDeviceModal" open>
+      <div class="modal-header">
+        <h3>Add New Device Node</h3>
+        <button class="close-modal-btn" id="closeModalBtn" aria-label="Close dialog">&times;</button>
+      </div>
+      <form id="addDeviceForm">
+        <div class="form-group">
+          <label for="newDeviceName">Device Name</label>
+          <input type="text" id="newDeviceName" placeholder="e.g. Core-Switch-04" required />
+        </div>
+        <div class="form-group">
+          <label for="newDeviceIP">IP Address</label>
+          <input type="text" id="newDeviceIP" placeholder="e.g. 192.168.1.50" pattern="^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$" title="Enter a valid IPv4 address" required />
+        </div>
+        <div class="form-group">
+          <label for="newDeviceType">Device Type</label>
+          <select id="newDeviceType" required>
+            <option value="Router">Router</option>
+            <option value="Server">Database Server</option>
+            <option value="Core Switch">Core Switch</option>
+            <option value="Firewall">NextGen Firewall</option>
+            <option value="Access Point">Wireless AP</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="newDeviceStatus">Initial Status</label>
+          <select id="newDeviceStatus" required>
+            <option value="Online">Online (Operational)</option>
+            <option value="Warning">Warning (Latency Warning)</option>
+            <option value="Offline">Offline (Critical Alert)</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="form-btn secondary" id="cancelFormBtn">Cancel</button>
+          <button type="submit" class="form-btn primary">Provision Node</button>
+        </div>
+      </form>
+    </dialog>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
