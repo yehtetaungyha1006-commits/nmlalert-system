@@ -254,7 +254,7 @@ app.post("/api/devices", async (req, res) => {
       // Trigger Line Notify Alert if newly added node is Offline
       if (initialStatus === "Offline") {
         const timeStr = new Date().toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit" });
-        await sendLineNotify(`[ALERT] 🔴\nอุปกรณ์: ${device_name} Offline (ล่มตั้งแต่เริ่มต้นเพิ่มโหนด)\nไอพี: ${ip_address}\nเวลา: ${timeStr}`);
+        await sendLineNotify(`[ALERT] 🔴\nอุปกรณ์: ${device_name} Offline (ล่มตั้งแต่เริ่มต้นเพิ่มโหนด)\nตำแหน่ง: ${location || "ไม่ได้ระบุ"}\nไอพี: ${ip_address}\nเวลา: ${timeStr}`);
         
         await pool.query(
           "INSERT INTO alerts (device_id, message, alert_type) VALUES (?, ?, ?)",
@@ -355,7 +355,7 @@ app.post("/api/alerts/:id/resolve", async (req, res) => {
 
           // Notify recovery
           const timeStr = new Date().toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit" });
-          await sendLineNotify(`[RECOVER] 🟢\nอุปกรณ์: ${dev.device_name} Online (กู้คืนสำเร็จโดยแอดมิน)\nไอพี: ${dev.ip_address}\nเวลา: ${timeStr}`);
+          await sendLineNotify(`[RECOVER] 🟢\nอุปกรณ์: ${dev.device_name} Online (กู้คืนสำเร็จโดยแอดมิน)\nตำแหน่ง: ${dev.location || "ไม่ได้ระบุ"}\nไอพี: ${dev.ip_address}\nเวลา: ${timeStr}`);
         }
       }
       res.json({ success: true });
@@ -665,18 +665,18 @@ async function startPingDaemon() {
             );
             
             // B. Send LINE Alert
-            await sendLineNotify(`[ALERT] 🔴\nอุปกรณ์: ${dev.device_name} Offline\nไอพี: ${dev.ip_address}\nเวลา: ${timeStr}`);
+            await sendLineNotify(`[ALERT] 🔴\nอุปกรณ์: ${dev.device_name} Offline\nตำแหน่ง: ${dev.location || "ไม่ได้ระบุ"}\nไอพี: ${dev.ip_address}\nเวลา: ${timeStr}`);
             
           } else if (newStatus === "Online" && prevStatus === "Offline") {
             // OFFLINE -> ONLINE (RECOVER!)
             // A. Mark old alerts as resolved
             await pool.query(
-              "UPDATE alerts SET alert_type = 'resolved' WHERE device_id = ? AND alert_type = 'critical'",
+               "UPDATE alerts SET alert_type = 'resolved' WHERE device_id = ? AND alert_type = 'critical'",
               [dev.id]
             );
 
             // B. Send LINE Recover
-            await sendLineNotify(`[RECOVER] 🟢\nอุปกรณ์: ${dev.device_name} Online (ฟื้นคืนปกติ)\nไอพี: ${dev.ip_address}\nเวลา: ${timeStr}`);
+            await sendLineNotify(`[RECOVER] 🟢\nอุปกรณ์: ${dev.device_name} Online (ฟื้นคืนปกติ)\nตำแหน่ง: ${dev.location || "ไม่ได้ระบุ"}\nไอพี: ${dev.ip_address}\nเวลา: ${timeStr}`);
           }
         }
       }
